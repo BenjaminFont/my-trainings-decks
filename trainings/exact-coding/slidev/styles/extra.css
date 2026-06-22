@@ -1,0 +1,178 @@
+/* ===================================================================
+   EXACT-Coding — DECK-SPEZIFISCHE Ergänzungen (PDF-Migration).
+   Brand-Basis kommt aus dem Theme (theme-codecentric/styles/base.css).
+   Hier nur deck-eigenes: Autoren-Folie, Tweet-Shot, Spektrum-Balken,
+   Example-Mapping-HOW, TDD-Layout, Experiment-Result-Layouts.
+   Plus die deck-eigenen photo-head-Feinwerte und Dichte-Varianten.
+   =================================================================== */
+
+/* ---------- Section-Foto-Header: deck-eigene Feinwerte (Theme nutzt die CE-Variante) ---------- */
+.slidev-layout.cc.photo-head .head { padding: 4.5% 7% 2.5%; }
+.cc.photo-head .head h2.slash { margin: 0; font-size: 2.4em; font-weight: 800; padding-top: 0; }
+/* secno-inline in diesem Deck nicht genutzt; Theme-Default (absolut) bleibt unkritisch. */
+
+/* ---------- Autoren-Folie (PDF S.2) ---------- */
+.cc .authors { display: flex; gap: 3em; margin: 0.6em 0 1.4em; }
+.cc .authors img { height: 230px; width: auto; display: block; }
+.cc .book-link { margin-top: 0.4em; }
+.cc .book-link a {
+  font-size: 1.05em; font-weight: 500;
+  border-bottom: 0.08em solid var(--cc-black); padding-bottom: 0.05em;
+}
+.cc .book-note { margin-top: 0.4em; }
+
+/* ---------- Tweet-Screenshot (PDF S.4) ----------
+   Höhe in Slide-Canvas-Pixeln (Deck-Canvas ist fix 720px hoch) statt vh —
+   vh bezieht sich aufs Browserfenster und sprengt im Vollbild den Rahmen. */
+.cc .tweet-shot { display: flex; justify-content: center; margin-top: 0.3em; }
+.cc .tweet-shot img {
+  max-height: 470px; width: auto; max-width: 46%;
+  border-radius: 10px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.12);
+}
+
+/* ---------- Spektrum-Balken Vibe vs Handmade (PDF S.5) ---------- */
+.cc .spectrum-card {
+  background: #f7f8fa; border-radius: 22px;
+  padding: 3em 3.5em 3.2em; margin-top: 1.4em;
+}
+.cc .spectrum-labels { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.4em; }
+.cc .spectrum-label { font-weight: 800; font-size: 0.7em; line-height: 1.15; letter-spacing: 0.01em; }
+.cc .spectrum-label.right { text-align: right; }
+.cc .spectrum-label .sl-mint { color: var(--cc-mint); }
+.cc .spectrum-label .sl-yellow { color: #e4d400; }
+.cc .spectrum-label .sl-sub { color: var(--cc-mint); font-size: 0.82em; }
+.cc .spectrum-bar {
+  position: relative; height: 1.5em; border-radius: 4px;
+  background: linear-gradient(90deg,
+    #22F4AE 0%, #00C9EC 30%, #8aa0c9 50%, #FF5A5F 72%, #F7EA2D 100%);
+}
+.cc .spectrum-bar .tick {
+  position: absolute; top: -0.55em; width: 2px; height: 2.6em; background: #5b6675;
+}
+.cc .spectrum-bar .tick.t0 { left: 0; }
+.cc .spectrum-bar .tick.t1 { left: 25%; }
+.cc .spectrum-bar .tick.t2 { left: 50%; }
+.cc .spectrum-bar .tick.t3 { left: 75%; }
+.cc .spectrum-bar .tick.t4 { left: calc(100% - 2px); }
+
+/* ---------- Example-Mapping HOW (PDF S.9) ---------- */
+.cc .em-how { display: flex; align-items: center; gap: 0.6em; margin-top: 0.6em; }
+.cc .em-how .em-left { flex: 1.05; }
+.cc .em-how .em-right { flex: 1.1; }
+/* Ein einzelner, gerader Pfeil nach rechts (mittig). */
+.cc .em-how .em-arrows { flex: none; align-self: center; color: var(--cc-black); font-size: 1.6em; font-weight: 700; }
+.cc .em-caption { font-size: 0.62em; margin-bottom: 0.4em; }
+.cc .em-caption.right { text-align: left; }
+.cc .em-caption .lead { display: block; font-size: 0.85em; }
+.cc .em-how .em-card { font-size: 0.6em; }
+.cc .em-how .gherkin { line-height: 1.35; }
+
+/* ---------- TDD-Folien Layout (PDF S.11/12) ---------- */
+.cc .tdd-layout { display: flex; align-items: center; gap: 2.5em; margin-top: 0.6em; }
+.cc .tdd-layout .traffic-light { font-size: 1.05em; }
+.cc .tdd-steps { flex: 1; font-size: 1.05em; }
+.cc .tdd-steps li { margin: 0.9em 0; }
+/* DE-Folie 12: längerer Text → Schritt-Schrift kleiner + enger an die Ampel,
+   damit jede Zeile inkl. „- KI" komplett passt. */
+.cc.tdd-de .tdd-layout { gap: 1.4em; }
+.cc.tdd-de .tdd-steps { font-size: 0.8em; }
+
+/* ---------- Drei-Achsen-Karten (PDF S.15) ---------- */
+.cc .cards.axes { margin-top: 0.6em; align-items: stretch; }
+.cc .cards.axes .card { font-size: 0.78em; }
+.cc .cards.axes .card h3 { font-size: 1.15em; margin-bottom: 0.1em; }
+.cc .cards.axes .card-sub { color: var(--cc-grey); font-weight: 700; font-size: 0.62em; letter-spacing: 0.04em; margin-bottom: 0.4em; }
+.cc .cards.axes .dots.compact { font-size: 0.82em; }
+.cc .cards.axes .dots.compact li { margin: 0.35em 0; }
+.cc .flow.perrun {
+  margin-top: 1.1em; background: #f7f8fa; border-radius: 14px;
+  padding: 0.7em 0.9em; font-size: 0.62em; align-items: stretch; flex-wrap: nowrap;
+}
+.cc .flow.perrun .perrun-label { color: var(--cc-grey); font-weight: 700; align-self: center; letter-spacing: 0.05em; margin-right: 0.3em; }
+.cc .flow.perrun .step { background: transparent; padding: 0.2em 0.4em; line-height: 1.25; }
+.cc .flow.perrun .gl { color: var(--cc-grey); font-weight: 400; font-style: normal; font-size: 0.9em; }
+.cc .flow.perrun .arrow { align-self: center; }
+
+/* ---------- "What they measured" drei Spalten (PDF S.16) ---------- */
+.cc .three-col { display: flex; gap: 1.6em; margin-top: 0.5em; }
+.cc .three-col .mcol { flex: 1; }
+.cc .three-col h3 { font-size: 0.82em; font-weight: 700; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-bottom: 0.45em; }
+.cc .three-col h3.mt { margin-top: 0.9em; }
+.cc .measured .metric { font-size: 0.6em; font-weight: 700; margin-top: 0.55em; line-height: 1.5; }
+.cc .measured .metric code.inline { font-size: 0.95em; }
+.cc .measured .mdesc { font-size: 0.52em; color: #374151; line-height: 1.35; margin-top: 0.12em; }
+.cc .measured .msub { font-size: 0.52em; color: var(--cc-grey); font-weight: 600; margin-top: 0.5em; }
+.cc .measured .direction-box {
+  margin-top: 0.9em; background: #f4f4f5; border-radius: 10px;
+  padding: 0.6em 0.7em; font-size: 0.5em; line-height: 1.4; color: #374151;
+}
+.cc .pill { vertical-align: middle; }
+.cc .three-col .pill { font-size: 0.46em; padding: 0.15em 0.5em; }
+.cc .three-col .pill:not(.green):not(.blue):not(.red) { background: #e9d5ff; color: #6b21a8; }
+
+/* ---------- Result Gewinner-Karten (PDF S.17) ---------- */
+.cc .cards.result-winners { align-items: stretch; margin-top: 0.4em; }
+.cc .cards.result-winners .card { flex: 1; text-align: left; background: #f7f8fa; border: 1.5px solid #e5e7eb; }
+.cc .cards.result-winners .card-sub { color: var(--cc-grey); font-weight: 700; font-size: 0.62em; letter-spacing: 0.05em; }
+.cc .cards.result-winners .winner { font-size: 1.25em; font-weight: 800; margin: 0.15em 0 0.25em; }
+.cc .cards.result-winners .winner-note { font-size: 0.62em; color: var(--cc-grey); line-height: 1.3; }
+.cc .result-x { flex: none; align-self: center; color: var(--cc-grey); font-size: 1.1em; font-weight: 400; }
+.cc .result-bullets { margin-top: 0.9em; font-size: 0.7em; }
+.cc .result-bullets li { margin: 0.5em 0; line-height: 1.3; }
+
+/* ---------- Result Detail zwei Spalten (PDF S.18) ---------- */
+.cc .two-col.result-detail { gap: 2.4em; margin-top: 0.5em; }
+.cc .result-detail .col-head { font-size: 0.78em; font-weight: 700; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-bottom: 0.5em; }
+.cc .result-detail .metric { font-size: 0.62em; font-weight: 700; margin-top: 0.6em; }
+.cc .result-detail .mdesc { font-size: 0.55em; color: #374151; line-height: 1.4; margin-top: 0.15em; }
+.cc .result-detail .accent-num { color: var(--cc-iris); font-weight: 700; margin-left: 0.3em; }
+.cc .price-line { margin-top: 1.2em; font-size: 0.95em; font-weight: 700; }
+.cc .price-line .red { color: var(--cc-red); }
+
+/* ---------- Dichte Folien: Überschrift bleibt auf Standard-Höhe ----------
+   Überschrift (h2.slash) sitzt wie auf allen Inhaltsfolien (Theme: padding-top
+   11%, fontSize 54px / 1.7em) — KEINE Sonderhöhe mehr. Der nötige Platz für
+   die dichten Inhalte kommt unten (Logo sitzt oben rechts) sowie aus der
+   blockweisen Verdichtung weiter unten. */
+.slidev-layout.cc.dense:not(.center-text):not(.title-slide) { padding-bottom: 3.5%; }
+/* Abstand Headline -> erster Inhaltsblock auf dichten Folien knapper. */
+.cc.dense > h2.slash { margin-bottom: 0.15em; }
+
+/* Slide 9 — Example-Mapping HOW: Karten/Boxen etwas kompakter */
+.cc.dense .em-how { margin-top: 0.3em; }
+.cc.dense .em-how .em-card { font-size: 0.54em; }
+.cc.dense .em-how .em-caption { font-size: 0.56em; margin-bottom: 0.25em; }
+
+/* Slide 15 — drei Achsen + Per-Run-Flow: Karten + Flow verdichten */
+.cc.dense .cards.axes { margin-top: 0.4em; }
+.cc.dense .cards.axes .card { font-size: 0.72em; padding: 0.6em 0.7em; }
+.cc.dense .cards.axes .dots.compact li { margin: 0.28em 0; }
+.cc.dense .flow.perrun { margin-top: 0.55em; font-size: 0.58em; }
+
+/* Slide 16 — measured: Spalten etwas enger */
+.cc.dense.measured-slide .three-col { margin-top: 0.25em; }
+.cc.dense.measured-slide .measured .metric { margin-top: 0.34em; font-size: 0.56em; }
+.cc.dense.measured-slide .measured .mdesc { font-size: 0.49em; }
+.cc.dense.measured-slide .measured .direction-box { margin-top: 0.5em; }
+
+/* Slide 17 — Result: Gewinner-Karten + Bullets kompakter, damit der 3. Bullet passt */
+.cc.dense .cards.result-winners { margin-top: 0.3em; }
+.cc.dense .cards.result-winners .winner { font-size: 1.15em; }
+.cc.dense .result-bullets { margin-top: 0.6em; font-size: 0.66em; }
+.cc.dense .result-bullets li { margin: 0.42em 0; }
+
+/* Slide 18 — Result-Detail: Zwei-Spalten + Preiszeile verdichten */
+.cc.dense .two-col.result-detail { margin-top: 0.3em; }
+.cc.dense .result-detail .metric { margin-top: 0.45em; }
+.cc.dense .price-line { margin-top: 0.8em; }
+
+/* Slide 8 — Example-Mapping WHY: 4 längere Bullets kompakter setzen */
+.cc.tight-dots ul.dots { font-size: 0.82em; }
+.cc.tight-dots ul.dots li { margin: 0.5em 0; }
+
+/* DE-Version: deutscher Text ist länger → einzelne Folien minimal enger.
+   Nur über die Marker-Klasse `de-compact` (greift nicht auf das EN-Deck). */
+.cc.de-compact.measured-slide .measured .mdesc { font-size: 0.47em; line-height: 1.3; }
+.cc.de-compact.measured-slide .measured .metric { margin-top: 0.3em; }
+.cc.de-compact.measured-slide .three-col { gap: 1.3em; }

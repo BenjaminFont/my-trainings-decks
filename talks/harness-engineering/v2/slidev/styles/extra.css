@@ -1,0 +1,180 @@
+/* ===================================================================
+   Harness Engineering — DECK-SPEZIFISCHE Ergänzungen.
+
+   Die geteilte codecentric-Brand-Basis (Farben, Rubik, .cc-Layouts,
+   .secno, h2.slash, footer-logo, Tabellen, Karten …) kommt aus dem
+   Theme `theme-codecentric` (styles/base.css). Hier liegen nur die
+   Dinge, die NUR dieses Deck braucht:
+     - Pastell-„soft"-Töne für die Diagramme
+     - Diagramm-Primitive (cc-diamond, cc-pill, cc-box, cc-dashed, cc-tag)
+     - Brand-Helfer, die die wiederverwendeten Vue-Komponenten nutzen
+       (cc-slashes, cc-heading, cc-bar, cc-arrow, cc-table, t-* Farben)
+     - bewusste Drift (padding-top der Inhaltsfolien)
+
+   Die Diagramm-Primitive sind NICHT unter `.cc` gescoped, weil die
+   Vue-Komponenten (Diamonds, DomainConsumable, ExampleMapping …) sie
+   als globale Utility-Klassen referenzieren.
+   =================================================================== */
+
+:root {
+  /* Pastell-„soft"-Töne aus den Original-Slides (für Diamanten/Boxen) */
+  --cc-white:        #ffffff;
+  --cc-green-soft:   #99f9d6;   /* Diamant-Grün hell */
+  --cc-blue-soft:    #7fe3f5;   /* Diamant-Blau hell */
+  --cc-yellow-soft:  #fbf496;   /* Diamant-Gelb hell */
+  --cc-red-soft:     #ffb3c2;   /* Box-Rot hell */
+  --cc-iris-soft:    #c0bdf7;   /* supporting / lila */
+  --cc-mint-soft:    #9af0d7;
+  --cc-gray-soft:    #ececec;   /* neutrale Box */
+  --cc-line:         #111111;   /* Diagramm-Konturen */
+}
+
+/* Inhaltsfolien dieses Decks etwas höher ansetzen als die SDD-Basis (11%). */
+.slidev-layout.cc:not(.center-text):not(.title-slide):not(.photo-head) {
+  padding-top: 7.5%;
+}
+
+/* ===========================================================
+   Brand-Helfer (von den Vue-Komponenten + Inline-Folien genutzt)
+   =========================================================== */
+
+/* // Doppel-Schrägstrich-Akzent */
+.cc-slashes {
+  display: inline-block;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--cc-green);
+  margin-right: 0.35em;
+  letter-spacing: -0.05em;
+}
+
+/* Überschrift mit //-Präfix (Flex-Variante der Komponenten) */
+.cc-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  font-weight: 800;
+}
+.cc-heading h1, .cc-heading h2 { margin: 0; }
+
+/* Grüner Akzentbalken (Cover) */
+.cc-bar {
+  background: var(--cc-green);
+  width: 14px;
+  border-radius: 4px;
+  align-self: stretch;
+}
+
+/* Langer flacher grüner Pfeil (──▶) für die *.md-Statement-Folien */
+.cc-arrow {
+  display: inline-block;
+  position: relative;
+  width: 1.6em;
+  height: 0.16em;
+  background: var(--cc-green);
+  margin-right: 0.55em;
+  vertical-align: 0.28em;
+}
+.cc-arrow::after {
+  content: "";
+  position: absolute;
+  right: -0.05em;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 0.42em solid var(--cc-green);
+  border-top: 0.32em solid transparent;
+  border-bottom: 0.32em solid transparent;
+}
+
+/* Marken-Farbhelfer */
+.t-green  { color: var(--cc-green); }
+.t-blue   { color: var(--cc-blue); }
+.t-mint   { color: var(--cc-mint); }
+.t-yellow { color: var(--cc-yellow); }
+.t-red    { color: var(--cc-red); }
+.t-iris   { color: var(--cc-iris); }
+
+/* ===========================================================
+   Diagramm-Primitive (global, von den Vue-Komponenten genutzt)
+   =========================================================== */
+.cc-diamond {
+  aspect-ratio: 1 / 1;
+  border: 2.5px solid var(--cc-line);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.4rem;
+  transform: rotate(45deg);
+}
+.cc-diamond > span { transform: rotate(-45deg); }
+
+.cc-pill {
+  border: 2.5px solid var(--cc-line);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  padding: 0.8em 1em;
+  text-align: center;
+}
+
+.cc-box {
+  border: 2.5px solid var(--cc-line);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  padding: 1.2em 1em;
+  text-align: center;
+}
+
+.cc-dashed {
+  border: 2.5px dashed var(--cc-line);
+  border-radius: 14px;
+}
+
+/* Label-Bubble (blauer Tag auf gestricheltem Container) */
+.cc-tag {
+  display: inline-block;
+  background: var(--cc-blue);
+  font-weight: 700;
+  padding: 0.25em 0.7em;
+  border-radius: 6px;
+}
+
+/* ===========================================================
+   Tabellen (Guides / Sensors) — eigenes Raster mit X-Spalten
+   =========================================================== */
+.cc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.05rem;
+}
+.cc-table th,
+.cc-table td {
+  border: 1px solid #d9d9d9;
+  padding: 0.7em 1em;
+  text-align: left;
+  vertical-align: top;
+}
+.cc-table thead th {
+  font-weight: 700;
+  border-top: none;
+  background: transparent;
+  color: var(--cc-black);
+}
+.cc-table thead th:first-child { border-left: none; }
+.cc-table thead th:last-child  { border-right: none; }
+.cc-table td:first-child { font-weight: 600; }
+.cc-table .x { font-weight: 700; }
+
+/* Guides/Sensors-Tabellen sind lang — etwas kompakter, damit die letzte
+   Zeile nicht unten aus dem Slide läuft. */
+.cc-table.compact { font-size: 0.92rem; }
+.cc-table.compact th,
+.cc-table.compact td { padding: 0.5em 1em; }

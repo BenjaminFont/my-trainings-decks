@@ -1,0 +1,7 @@
+/* Deck-spezifisches CSS für dieses Training-Deck.
+   Alles Markenweite kommt aus dem Theme (../../theme/styles).
+   Beispiel — eigene padding-top-Drift der Inhaltsfolien:
+   .slidev-layout.cc:not(.center-text):not(.title-slide):not(.photo-head) {
+     padding-top: 7.5%;
+   }
+*/

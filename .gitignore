@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.slidev/
+*-export.pdf
+*.local
+.DS_Store
+*.log
+.vscode/
+.idea/

@@ -1,0 +1,160 @@
+/* ===================================================================
+   Tools & Skills — DECK-SPEZIFISCHE Bausteine.
+   Brand-Basis kommt aus dem Theme (theme-codecentric/styles/base.css).
+   Hier nur deck-eigenes: Layer-Bänder, MCP-Radial/-Wiring, Icon-Karten,
+   Use-Case-Bubble, SKILL-Knoten, Code+Tree. Plus die deck-eigenen
+   Drift-Werte (padding-top, photo-head-Feinwerte).
+   =================================================================== */
+
+/* Deck-eigener vertikaler Anker der Inhaltsfolien-Headline (Theme-Default: 11%). */
+.slidev-layout.cc:not(.center-text):not(.title-slide):not(.photo-head) {
+  padding-top: 6.5%;
+}
+
+/* ---------- Section-Foto-Header: deck-eigene Feinwerte (Theme nutzt die CE-Variante) ----------
+   Größere // -Headline (Section-Divider-Charakter). Die Zahl (secno-inline) bleibt
+   bewusst auf der Theme-Standardposition (oben links, wie normale Folien). */
+.slidev-layout.cc.photo-head .head { padding: 4.5% 7% 2%; }
+.cc.photo-head .head h2 { padding-top: 0; font-size: inherit; }
+.cc.photo-head .head h2.slash { font-size: 2.6em; font-weight: 800; }
+
+/* ---------- 3-Layer-Bänder (Foundation / Extension / Customization) ---------- */
+.cc .layers { display: flex; flex-direction: column; margin-top: 1.2em; border-radius: 10px; overflow: hidden; }
+.cc .layers .layer {
+  padding: 1.1em 1.4em;
+  font-size: 0.92em;
+  text-align: center;
+  font-weight: 400;
+}
+.cc .layers .layer strong { font-weight: 700; }
+.cc .layers .layer.foundation { background: var(--cc-green); }
+.cc .layers .layer.extension  { background: var(--cc-blue); }
+.cc .layers .layer.custom     { background: var(--dot-yellow); }
+
+/* ---------- MCP-Radial (Modell mittig, Icons im Kranz) ---------- */
+.cc .radial { position: relative; width: 100%; height: 62%; margin-top: 0.4em; }
+.cc .radial .hub {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 2.6em; height: 2.6em; border-radius: 16px;
+  background: var(--dot-green);
+  border: 2.5px dashed #111;
+  display: flex; align-items: center; justify-content: center;
+}
+.cc .radial .hub svg { width: 1.7em; height: 1.7em; }
+.cc .radial .node {
+  position: absolute; font-size: 1.7em; color: #111;
+  display: flex; align-items: center; justify-content: center;
+}
+.cc .radial .node svg { width: 1em; height: 1em; }
+.cc .radial .arrow-line { position: absolute; background: none; }
+
+/* ---------- Pastell-Icon-Karten (Server / Client / Host) ---------- */
+.cc .iconcards { display: flex; gap: 5em; justify-content: center; margin-top: 2.6em; }
+.cc .iconcard { text-align: center; }
+.cc .iconcard .sq {
+  width: 5em; height: 5em; border-radius: 26px;
+  border: 3px dashed #111;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto;
+}
+.cc .iconcard .sq svg { width: 3.1em; height: 3.1em; }
+.cc .iconcard .sq.y { background: var(--dot-yellow); }
+.cc .iconcard .sq.g { background: var(--dot-green); }
+.cc .iconcard .sq.b { background: var(--dot-blue); }
+.cc .iconcard .clabel { font-weight: 700; font-size: 1.4em; margin-top: 0.75em; }
+
+/* ---------- MCP-Wiring-Box (Claude Code Container ↔ Server-Reihe) ---------- */
+.cc .wire { display: flex; align-items: center; gap: 1.4em; margin-top: 1em; }
+.cc .wire .host {
+  position: relative; flex: 1;
+  border: 2.5px dashed #111; border-radius: 14px;
+  padding: 1.6em 1.2em 1.2em;
+}
+.cc .wire .host .host-tag {
+  position: absolute; top: -0.05em; left: 0.7em; transform: translateY(-45%);
+  background: var(--dot-blue); border-radius: 8px;
+  padding: 0.18em 0.7em; font-weight: 700; font-size: 0.78em;
+  display: flex; align-items: center; gap: 0.35em;
+}
+.cc .wire .host .host-tag svg { width: 0.9em; height: 0.9em; }
+.cc .wire .row { display: flex; align-items: center; gap: 0.7em; margin: 0.5em 0; }
+.cc .wire .row + .row { margin-top: 0.7em; }
+.cc .wire .client {
+  background: var(--dot-green); border: 2px solid #111; border-radius: 10px;
+  padding: 0.4em 0.9em; font-weight: 700; font-size: 0.8em; flex: none; min-width: 4.2em; text-align: center;
+}
+.cc .wire .link { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4em; }
+.cc .wire .link .lbl { font-weight: 700; font-size: 0.75em; }
+.cc .wire .link .ln { flex: 1; height: 0; border-top: 2px solid #111; }
+.cc .wire .link .ln.tip { position: relative; }
+.cc .wire .server {
+  background: var(--dot-yellow); border: 2px solid #111; border-radius: 10px;
+  padding: 0.4em 0.9em; font-weight: 700; font-size: 0.8em; flex: none;
+  display: flex; align-items: center; gap: 0.4em; min-width: 6.2em;
+}
+.cc .wire .server svg { width: 1.1em; height: 1.1em; }
+.cc .wire .ext { flex: none; display: flex; flex-direction: column; align-items: center; gap: 1.2em; font-size: 0.8em; }
+.cc .wire .ext .cloud { display: flex; flex-direction: column; align-items: center; gap: 0.2em; }
+.cc .wire .ext .cloud svg { width: 2.6em; height: 2.6em; color: var(--cc-blue); }
+.cc .arrow-h { color: #111; font-weight: 700; }
+
+/* generischer Rechtspfeil zwischen Flow-Knoten */
+.cc .arr::after { content: "→"; color: #111; font-weight: 800; }
+
+/* ---------- Use-Case (Prompt-Bubble + kompaktes Wiring) ---------- */
+.cc .usecase-prompt {
+  display: flex; align-items: flex-start; gap: 0.5em;
+  font-style: italic; font-weight: 500; font-size: 0.92em; margin-top: 0.2em;
+}
+.cc .usecase-prompt .qmark { color: var(--cc-green); font-weight: 800; font-size: 1.2em; line-height: 1; }
+.cc .usecase-prompt svg { width: 1.3em; height: 1.3em; flex: none; margin-top: 0.1em; }
+
+/* ---------- SKILL-Diversity (wie Wiring, aber grüne SKILL-Knoten + Transportlabel) ---------- */
+.cc .wire .skill {
+  background: var(--dot-green); border: 2px solid #111; border-radius: 10px;
+  padding: 0.45em 1em; font-weight: 700; font-size: 0.8em; flex: none; min-width: 4.6em; text-align: center;
+}
+
+/* ---------- Code-Block-Variante: SKILL.md Beispiele ---------- */
+.cc pre.skill { font-size: 0.62em; }
+.cc pre.skill code { background: #1f2430; }
+
+/* zweispaltiges Code+Tree-Layout (PDP domain-specific) */
+.cc .code-tree { display: flex; gap: 1.4em; align-items: flex-start; margin-top: 0.6em; }
+.cc .code-tree > pre { flex: 1.3; margin: 0; }
+.cc .tree { flex: 1; font-size: 0.66em; line-height: 1.7; }
+.cc .tree .root { font-weight: 700; }
+.cc .tree .ti { color: var(--cc-grey); }
+.cc .tree .ti strong { color: #111; }
+
+/* Untertitel/Überschrift mittig über einem Code-Beispiel */
+.cc .code-cap { text-align: center; font-weight: 700; font-size: 1.05em; margin: 0.2em 0 0.6em; }
+
+/* ---------- Cosinex MCP-Empfehlungstabelle ---------- */
+.cc .cosinex-table table { font-size: 0.58em; margin-top: 0.5em; }
+.cc .cosinex-table th, .cc .cosinex-table td { padding-top: 0.5em; padding-bottom: 0.5em; }
+.cc .cosinex-table td:first-child { text-align: center; font-weight: 700; color: var(--cc-grey); }
+.cc .cosinex-table td:nth-child(2) { white-space: normal; }
+.cc .src { margin-top: 0.8em; font-size: 0.64em; color: var(--cc-grey); }
+.cc .src strong { color: #111; }
+
+/* ---------- Working-Slot „Vorgehen": 3-Phasen-Spalten (MCP & Skills) ---------- */
+.cc .ws { display: flex; font-size: 0.72em; gap: 1.8em; align-items: flex-start; }
+.cc .ws.three-col > div { flex: 1; }
+.cc .ws .ws-phase { font-weight: 700; font-size: 1em; min-height: 2.4em; margin-bottom: 0.3em; display: flex; align-items: center; gap: 0.4em; white-space: nowrap; }
+.cc .ws .ws-examples { font-weight: 600; color: var(--cc-grey); margin-top: 0.5em; font-size: 0.92em; }
+.cc .ws ul.dot-list { list-style: none; margin: 0.15em 0 0; padding: 0; }
+.cc .ws ul.dot-list.compact li { font-size: 0.9em; margin: 0.22em 0; display: block; padding-left: 0.9em; text-indent: -0.9em; line-height: 1.35; }
+.cc .ws ul.dot-list.compact li::before { content: "•"; color: var(--cc-grey); font-weight: 700; margin-right: 0.3em; }
+.cc .ws .pill { font-size: 0.7em; white-space: nowrap; flex: none; }
+
+/* ---------- Ressourcen-Link-Sammlung (MCP-Hubs & Skill-Sammlungen) ---------- */
+.cc .reslinks { display: flex; gap: 1.5em; margin-top: 0.6em; align-items: flex-start; }
+.cc .reslinks > div { flex: 1; min-width: 0; }
+.cc .reslinks .rl-head { font-weight: 700; font-size: 0.85em; margin-bottom: 0.5em; display: flex; align-items: center; gap: 0.4em; flex-wrap: wrap; }
+.cc .reslinks ul { list-style: none; margin: 0; padding: 0; }
+.cc .reslinks li { font-size: 0.6em; line-height: 1.3; margin: 0.55em 0; display: block; padding-left: 0.9em; text-indent: -0.9em; overflow-wrap: anywhere; }
+.cc .reslinks li::before { content: "→"; color: var(--cc-green); font-weight: 700; margin-right: 0.35em; }
+.cc .reslinks .rl-name { font-weight: 700; }
+.cc .reslinks .rl-url { color: var(--cc-grey); overflow-wrap: anywhere; }
+.cc .reslinks .rl-desc { color: var(--cc-grey); display: block; padding-left: 0.9em; text-indent: 0; font-size: 0.95em; margin-top: 0.1em; }

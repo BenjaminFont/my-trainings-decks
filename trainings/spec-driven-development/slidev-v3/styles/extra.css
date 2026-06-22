@@ -1,0 +1,91 @@
+/* ===================================================================
+   Spec-Driven-Development (V2) — DECK-SPEZIFISCHE Ergänzungen.
+   Die geteilte Brand-Basis kommt aus dem Theme
+   (theme-codecentric/styles/base.css). Hier nur, was es ausschließlich in
+   diesem Deck gibt: Dichte-Varianten für die Vergleichstabellen (Akt 2),
+   ein Gradient-Skalenbalken (Taktung-Folie) und das Akzentquadrat für den
+   Kapitel-Trenner (ChapterMark). Alles andere — .flow, .dots, .cards, .pill,
+   .em-*, Tabellen, split-title — liefert bereits das Theme.
+   =================================================================== */
+
+/* ---------- Dichte Folien: datenreiche Vergleichstabellen (Akt 2) ----------
+   Logo sitzt (Theme) oben rechts → unten ist Platz frei, Headline darf höher.
+   Gilt für die vier breiten Tabellen-Folien (Matrix, BMAD-Phasen, Genese,
+   Taktung) und die Vor-/Nachteile-Tabelle. */
+.slidev-layout.cc.dense:not(.center-text):not(.title-slide) {
+  padding-top: 6%;
+  padding-bottom: 4%;
+}
+.cc.dense h2.slash { font-size: 1.5em; margin-bottom: 0.25em; }
+
+/* Engere Tabelle: kleinere Zellen + Schrift, damit mehrzeilige Tabellen ohne
+   Überlauf atmen. Ersetzt das frühere Inline-style="font-size:0.6em". */
+.cc table.tight { font-size: 0.62em; }
+.cc table.tight th,
+.cc table.tight td { padding: 0.4em 0.6em; }
+.cc table.tight td { line-height: 1.35; }
+
+/* ---------- Gradient-Skalenbalken (Akt 2: Taktung kleinteilig ↔ groß-upfront) ----------
+   Additiv zur bestehenden Tabelle — visualisiert das Spektrum
+   gering (OpenSpec) → mittel (spec-kit) → Big-Upfront (BMAD). */
+.cc .scale-bar {
+  position: relative;
+  height: 1.1em;
+  border-radius: 4px;
+  margin-top: 0.6em;
+  background: linear-gradient(90deg,
+    var(--cc-green) 0%, var(--cc-blue) 50%, var(--cc-red) 100%);
+}
+.cc .scale-bar .tick {
+  position: absolute; top: -0.45em;
+  width: 2px; height: 2em; background: #5b6675;
+}
+.cc .scale-bar .tick.t0 { left: 0; }
+.cc .scale-bar .tick.t1 { left: 50%; }
+.cc .scale-bar .tick.t2 { left: calc(100% - 2px); }
+.cc .scale-labels {
+  display: flex; justify-content: space-between;
+  margin-top: 0.5em; font-size: 0.6em; font-weight: 700;
+}
+.cc .scale-labels .sl-mid { text-align: center; }
+.cc .scale-labels .gl { display: block; color: var(--cc-grey); font-weight: 500; }
+
+/* ---------- Akzentquadrat für den Kapitel-Trenner (ChapterMark.vue) ----------
+   „Grünes Akzentquadrat zum Hervorheben von Zahlen" (codecentric-Brand). */
+.cc .num-square {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.7em; height: 1.7em; border-radius: 14px;
+  background: var(--cc-green); color: var(--cc-black);
+  font-weight: 900; font-size: 1.6em; letter-spacing: -0.02em;
+}
+
+/* ---------- Merge-Diagramm (Akt 3: Delta → lebende Spec beim sync) ----------
+   Drei Spalten: Delta-Operationen → LLM-Merge (prüft Widersprüche) → gepflegte
+   Spec. Global statt scoped <style>, damit es zuverlässig auf der Folie greift. */
+.cc .three-merge { display: flex; align-items: center; gap: 0.6em; }
+.cc .three-merge .merge-col { flex: 1; }
+.cc .three-merge .merge-mid { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.3em; }
+.cc .three-merge .merge-arrow { color: var(--cc-green); font-weight: 800; font-size: 1.3em; }
+.cc .three-merge .merge-llm { background: var(--cc-light); border-radius: 10px; padding: 0.5em 0.7em; text-align: center; font-weight: 700; font-size: 0.7em; line-height: 1.2; }
+.cc .three-merge .merge-llm span { display: block; color: var(--cc-grey); font-weight: 500; font-size: 0.85em; }
+
+/* ---------- Tinder-Karte (Akt 3: Rinder-Tinder-Beispiel) ----------
+   Verspielte Mock-Karte im Tinder-Stil — Foto-Platzhalter (Emoji), Info-Zeile,
+   Swipe-Buttons. Markenkonform: weiße Karte, grüner Akzent fürs Like. */
+.cc .tinder-card {
+  border: 2px solid #e5e7eb; border-radius: 18px; background: #fff;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10); overflow: hidden; max-width: 15em;
+}
+.cc .tinder-photo {
+  font-size: 5em; text-align: center; padding: 0.25em 0;
+  background: linear-gradient(160deg, #e9fbf2, #eaf7fd);
+}
+.cc .tinder-info { padding: 0.6em 0.8em 0.3em; font-size: 0.95em; line-height: 1.3; }
+.cc .tinder-info span { color: var(--cc-grey); font-size: 0.8em; }
+.cc .tinder-actions { display: flex; justify-content: center; gap: 1.2em; padding: 0.3em 0 0.8em; }
+.cc .tinder-actions span {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.8em; height: 1.8em; border-radius: 50%; font-size: 1.1em; font-weight: 800;
+}
+.cc .tinder-actions .ta-no { border: 2px solid #ef93b1; color: #b23e42; }
+.cc .tinder-actions .ta-yes { border: 2px solid var(--cc-green); color: #0a4934; background: #e9fbf2; }
