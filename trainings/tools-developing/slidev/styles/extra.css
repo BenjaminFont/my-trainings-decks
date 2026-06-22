@@ -1,0 +1,94 @@
+/* ===================================================================
+   Tools for developing — DECK-SPEZIFISCHE Ergänzungen.
+   Brand-Basis kommt aus dem Theme (theme-codecentric/styles/base.css).
+   Hier nur deck-eigenes: Link-Listen mit Kategorien, Feature-Blöcke,
+   Bild-Wände, Modell-Vergleichstabelle. Plus die deck-eigenen
+   photo-head-Feinwerte (Theme nutzt die CE-Variante).
+   =================================================================== */
+
+/* ---------- Deck-eigener vertikaler Anker der Inhaltsfolien-Headline (Theme-Default: 11%) ---------- */
+.slidev-layout.cc:not(.center-text):not(.title-slide):not(.photo-head) {
+  padding-top: 6.5%;
+}
+
+/* ---------- Section-Foto-Header: deck-eigene Feinwerte ----------
+   Große // -Headline mit Section-Divider-Charakter. Die Zahl (secno-inline)
+   bleibt bewusst auf der Theme-Standardposition (oben links, wie normale
+   Folien) — daher hier KEIN secno-inline-Override. */
+.slidev-layout.cc.photo-head .head { padding: 4.5% 7% 2%; }
+.cc.photo-head .head h2 { padding-top: 0; }
+.cc.photo-head .head h2.slash { font-size: 2.6em; font-weight: 800; }
+
+/* Robustheit für Print-/Export-Pfad: Im gestapelten Print-Layout setzt Slidev
+   `.slidev-page` auf `height:auto; position:absolute`. Die Theme-Regel
+   `.slidev-layout.cc { height:100% }` ergibt dann 0 (100% von auto), wodurch der
+   flex-Banner kollabiert (Bild + Headline scheinbar „weg"). Lösung: photo-head-
+   Root hart auf die Canvas-Höhe zwingen (schlägt Theme + Print) und dem Banner
+   eine feste Höhe geben. Slide = 1280×720; Kopf ~200px → Banner ~520px. */
+.slidev-layout.cc.photo-head { height: 720px !important; min-height: 720px; }
+.cc.photo-head .banner { flex: 0 0 auto; height: 520px; min-height: 520px; }
+
+/* ---------- Farbige Unter-Überschriften in Link-Listen (Local:/Other: …) ---------- */
+.cc .cat { font-weight: 700; font-size: 1.1em; margin: 0.2em 0 0.15em; }
+.cc .cat.pink { color: var(--cc-red); }
+.cc .cat.blue { color: var(--cc-blue); }
+.cc .cat.green { color: var(--cc-green); }
+.cc .cat:not(:first-child) { margin-top: 0.7em; }
+
+/* Link-Listen: Monospace-URLs, kompakt, umbruchsicher */
+.cc ul.links { list-style: none; margin: 0.1em 0 0; padding: 0; font-size: 0.82em; }
+.cc ul.links li { position: relative; padding-left: 1.1em; margin: 0.3em 0; line-height: 1.3; word-break: break-all; }
+.cc ul.links li::before { content: "•"; position: absolute; left: 0; color: var(--cc-black); font-weight: 700; }
+.cc ul.links a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--cc-green); text-decoration-thickness: 2px; }
+
+/* ---------- Feature-Block (Good features stand out) ---------- */
+.cc .feat-h { font-weight: 700; font-size: 0.98em; margin: 0.45em 0 0.05em; }
+.cc .two-col.feats > div > .feat-h:first-child { margin-top: 0; }
+.cc .two-col.feats ul.links { font-size: 0.86em; }
+.cc .two-col.feats ul.links li { word-break: normal; margin: 0.18em 0; line-height: 1.25; }
+.cc .two-col.feats ul.links li::before { content: "•"; color: var(--cc-grey); }
+
+/* ---------- Bild-Wände (Tools / Modelle / Showcase) ---------- */
+.cc .img-wall { display: flex; align-items: center; justify-content: center; flex: 1; min-height: 0; width: 100%; margin-top: 0.4em; }
+.cc .img-wall img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.cc .img-wall.narrow img { max-width: 84%; }
+.cc .img-wall.showcase img { max-height: 70%; max-width: 50%; border-radius: 6px; }
+
+/* ---------- Modell-Vergleichstabelle (kompakt, damit alle 3 Zeilen passen) ---------- */
+.cc table.models { font-size: 0.66em; margin-top: 0.5em; }
+.cc table.models th { font-size: 1.15em; padding: 0.45em 0.8em; }
+.cc table.models td { padding: 0.4em 0.8em; }
+.cc table.models td:first-child { font-size: 1.25em; font-weight: 700; width: 16%; }
+.cc table.models td:last-child { font-size: 1.25em; width: 14%; }
+.cc table.models ul.links { font-size: 1em; margin: 0; }
+.cc table.models ul.links li { margin: 0.12em 0; word-break: normal; }
+
+/* ---------- Dictation-Tools-Vergleichstabelle (10 Zeilen × 8 Spalten, sehr kompakt) ---------- */
+.cc table.dict-compare { font-size: 0.46em; margin-top: 0.4em; table-layout: fixed; }
+.cc table.dict-compare th {
+  font-size: 1em; padding: 0.5em 0.45em; line-height: 1.15; vertical-align: middle;
+}
+.cc table.dict-compare td {
+  padding: 0.32em 0.45em; line-height: 1.15; vertical-align: middle;
+  border-bottom: 1px solid #e5e7eb;
+}
+.cc table.dict-compare tbody tr:nth-child(even) td { background: #fafafa; }
+.cc table.dict-compare td:first-child { font-weight: 700; }
+/* ja/nein/optional-Spalten zentriert + farbig */
+.cc table.dict-compare td.y,
+.cc table.dict-compare td.n,
+.cc table.dict-compare td.m { text-align: center; font-weight: 700; white-space: nowrap; }
+.cc table.dict-compare td.y { color: #0d6145; }     /* grün = ja */
+.cc table.dict-compare td.n { color: var(--cc-red); } /* rot = nein */
+.cc table.dict-compare td.m { color: var(--cc-iris); } /* iris = optional/~ */
+/* Spaltenbreiten: Name, Kosten, 4× Flag, OS, Modelle */
+.cc table.dict-compare th:nth-child(1), .cc table.dict-compare td:nth-child(1) { width: 11%; }
+.cc table.dict-compare th:nth-child(2), .cc table.dict-compare td:nth-child(2) { width: 14%; }
+.cc table.dict-compare th:nth-child(3), .cc table.dict-compare td:nth-child(3) { width: 6%; }
+.cc table.dict-compare th:nth-child(4), .cc table.dict-compare td:nth-child(4) { width: 7%; }
+.cc table.dict-compare th:nth-child(5), .cc table.dict-compare td:nth-child(5) { width: 9%; }
+.cc table.dict-compare th:nth-child(6), .cc table.dict-compare td:nth-child(6) { width: 14%; }
+.cc table.dict-compare th:nth-child(7), .cc table.dict-compare td:nth-child(7) { width: 16%; }
+.cc table.dict-compare th:nth-child(8), .cc table.dict-compare td:nth-child(8) { width: 16%; }
+.cc table.dict-compare thead th { line-height: 1.1; }
+.cc .dict-legend { font-size: 0.42em; color: var(--cc-grey); margin-top: 0.8em; }

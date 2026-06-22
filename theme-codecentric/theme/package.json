@@ -1,0 +1,24 @@
+{
+  "name": "slidev-theme-codecentric",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Geteiltes codecentric-Slidev-Theme mit zwei Varianten: Training (wissensvermittelnde, technische Decks) und Pitch (Angebote/Vertrieb). Brand-Kern, Rubik-Fonts, Logos und Layouts an einem Ort.",
+  "keywords": [
+    "slidev-theme",
+    "slidev",
+    "codecentric"
+  ],
+  "slidev": {
+    "defaults": {
+      "fonts": {
+        "sans": "Rubik",
+        "local": "Rubik",
+        "provider": "none"
+      }
+    }
+  },
+  "engines": {
+    "slidev": ">=0.50.0"
+  }
+}

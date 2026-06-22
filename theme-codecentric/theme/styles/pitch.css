@@ -1,0 +1,424 @@
+/* ===================================================================
+   codecentric — PITCH-Variante.
+   Folien-Bausteine für überzeugende Decks (Pitches, Angebote,
+   Vertrieb): wenige Folien, große Aussagen, viel Weißraum,
+   Phasen/Timeline/KPI-Karten statt Code/Diagramme.
+
+   WICHTIG zur Koexistenz mit der Training-Variante:
+   Die Basis-Typografie ist hier auf .slidev-layout.pitch gescoped
+   (NICHT global auf .slidev-layout) — sonst würde sie die
+   Trainings-Decks (.cc) überschreiben. Die Pitch-Bausteine tragen
+   das Präfix .cc-* und sind damit ohnehin konfliktfrei.
+
+   Marken-Tokens, Rubik und der weiße Hintergrund kommen aus base.css.
+   =================================================================== */
+
+/* ---------- Grundtypografie (NUR auf Pitch-Folien) ---------- */
+.slidev-layout.pitch {
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--cc-black);
+  background: var(--cc-white);
+  /* großzügiger, „luftiger" Weißraum gem. Brand-Guide */
+  padding: 3.2rem 3.6rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  /* Volle Folienhöhe: Dieses Theme ersetzt das Default-Theme, das sonst
+     .slidev-layout { height: 100% } liefert. Ohne diese Regel kollabiert der
+     Container auf Inhaltshöhe — Cover-Fläche, zentrierte Statements und das
+     unten verankerte Logo/Foot sitzen dann falsch. */
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.slidev-layout.pitch h1,
+.slidev-layout.pitch h2,
+.slidev-layout.pitch h3 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--cc-black);
+  margin: 0;
+}
+.slidev-layout.pitch h1 { font-size: 2.7rem; }
+.slidev-layout.pitch h2 { font-size: 1.55rem; }
+.slidev-layout.pitch h3 { font-size: 1.05rem; font-weight: 700; }
+
+.slidev-layout.pitch p { margin: 0.35em 0; }
+.slidev-layout.pitch strong { font-weight: 700; }
+.slidev-layout.pitch em { font-style: italic; }
+.slidev-layout.pitch a { color: var(--cc-iris); text-decoration: none; }
+
+/* Listen ohne Standard-Bullets — wir setzen eigene Akzent-Punkte */
+.slidev-layout.pitch ul { list-style: none; padding: 0; margin: 0.4em 0; }
+
+/* ============================================================
+   Brand-Bausteine (Pitch)
+   ============================================================ */
+
+/* Doppel-Schrägstrich „//" — das codecentric-Signature-Element */
+.cc-slashes {
+  display: inline-block;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--cc-green);
+  margin-right: 0.5rem;
+  transform: skewX(-2deg);
+}
+
+/* Überschrift mit // davor */
+.cc-h-slash {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+.cc-h-slash::before {
+  content: "//";
+  font-weight: 900;
+  font-style: italic;
+  color: var(--cc-green);
+  font-size: 0.9em;
+  transform: skewX(-2deg);
+}
+
+/* Logo unten rechts (Wortmarke) */
+.cc-logo {
+  position: absolute;
+  right: 2.4rem;
+  bottom: 1.7rem;
+  height: 1.5rem;
+  opacity: 0.95;
+}
+.cc-logo--cover { height: 2rem; }
+
+/* Seitenzahl / Footer-Label links unten */
+.cc-foot {
+  position: absolute;
+  left: 3.6rem;
+  bottom: 1.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #6b7378;
+}
+
+/* Grünes Akzentquadrat (für Zahlen / KPI) */
+.cc-square {
+  background: var(--cc-green);
+  color: var(--cc-black);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.cc-square .kpi { font-size: 2.3rem; font-weight: 900; }
+.cc-square .lbl { font-size: 0.8rem; font-weight: 500; margin-top: 0.2rem; }
+
+/* Bubble (Sprechblasen-Highlight) */
+.cc-bubble {
+  background: var(--cc-green);
+  border-radius: 24px 24px 24px 4px;
+  padding: 1.1rem 1.3rem;
+  color: var(--cc-black);
+}
+
+/* Farbige „Pill"-Karten (Pastell-Tints) */
+.cc-card {
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  border: 2px solid rgba(0,0,0,0.82);
+  font-size: 0.9rem;
+}
+.cc-card h3 { margin-bottom: 0.15rem; }
+.cc-card p  { font-size: 0.82rem; margin: 0; }
+.cc-card.green  { background: var(--cc-green); }
+.cc-card.blue   { background: var(--cc-blue); }
+.cc-card.mint   { background: var(--cc-mint); }
+.cc-card.yellow { background: var(--cc-yellow); }
+.cc-card.red    { background: var(--cc-red); }
+.cc-card.tint-green  { background: var(--cc-green-100); border-color: rgba(0,0,0,0.12); }
+.cc-card.tint-blue   { background: var(--cc-blue-100);  border-color: rgba(0,0,0,0.12); }
+.cc-card.tint-yellow { background: var(--cc-yellow-100);border-color: rgba(0,0,0,0.12); }
+.cc-card.tint-red    { background: var(--cc-red-100);   border-color: rgba(0,0,0,0.12); }
+.cc-card.tint-iris   { background: var(--cc-iris-100);  border-color: rgba(0,0,0,0.12); }
+
+/* Liste mit Akzent-Punkten (codecentric green) */
+.cc-dotlist { display: flex; flex-direction: column; gap: 0.75rem; }
+.cc-dotlist > li {
+  position: relative;
+  padding-left: 1.55rem;
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+.cc-dotlist > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.32rem;
+  width: 0.85rem; height: 0.85rem;
+  border-radius: 50%;
+  background: var(--cc-green);
+}
+
+/* Schlichte Check-Liste */
+.cc-checklist { display: flex; flex-direction: column; gap: 0.5rem; }
+.cc-checklist > li {
+  position: relative;
+  padding-left: 1.3rem;
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+.cc-checklist > li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--cc-iris);
+  font-weight: 900;
+}
+
+/* Code-/Dunkelblock im Deck-Stil */
+.cc-code {
+  background: var(--cc-ink-700);
+  color: #e8ecef;
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+.cc-code .c { color: #8b97a0; }   /* Kommentar */
+.cc-code .g { color: var(--cc-green); }
+.cc-code .b { color: var(--cc-blue); }
+
+/* Kleine Label-Chips */
+.cc-chip {
+  display: inline-block;
+  background: var(--cc-grey-card);
+  border-radius: 999px;
+  padding: 0.18rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-right: 0.35rem;
+}
+.cc-chip.green { background: var(--cc-green); }
+.cc-chip.blue  { background: var(--cc-blue); }
+
+/* Hilfsklassen */
+.cc-muted { color: #5c6469; }
+.cc-green-text { color: var(--cc-green); }
+.cc-red-text { color: var(--cc-red); }
+.cc-iris-text { color: var(--cc-iris); }
+.cc-divider { height: 3px; width: 3.5rem; background: var(--cc-green); border: 0; margin: 0.6rem 0 1rem; }
+.pitch .text-center { text-align: center; }
+
+/* Grid-Helfer */
+.cc-grid { display: grid; gap: 1rem; }
+.cc-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.cc-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cc-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.cc-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.cc-grid.cols-1 { grid-template-columns: 1fr; }
+
+/* ============================================================
+   Pitch-Folientypen
+   ============================================================ */
+
+/* Sektions-Trenner: zentriertes // Statement auf weißer Fläche */
+.cc-section { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 0 4rem; }
+.cc-section .eyebrow { font-size: 1rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--cc-iris); margin-bottom: 1rem; }
+.cc-section h1 { font-size: 3.4rem; display: flex; align-items: baseline; gap: 0.8rem; }
+.cc-section h1::before { content: "//"; color: var(--cc-green); font-style: italic;
+  font-weight: 900; transform: skewX(-2deg); }
+.cc-section .sub { font-size: 1.2rem; margin-top: 1.1rem; max-width: 46ch; color: #46505a; }
+
+/* Statement-Slide: große Aussage mit farbigem Marker */
+.cc-statement { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 0 5rem; }
+.cc-statement p { font-size: 2.2rem; font-weight: 900; line-height: 1.28; letter-spacing: -0.01em; }
+.cc-mark { background: linear-gradient(transparent 62%, var(--cc-green) 62%); padding: 0 0.1em; }
+.cc-mark.blue { background: linear-gradient(transparent 62%, var(--cc-blue) 62%); }
+.cc-mark.yellow { background: linear-gradient(transparent 62%, var(--cc-yellow) 62%); }
+
+/* Phasen-Karten (3 Phasen Overview) */
+.cc-phase { border-radius: 14px; padding: 1.1rem 1.2rem; border: 2px solid rgba(0,0,0,0.1);
+  display: flex; flex-direction: column; background: #fff; }
+.cc-phase .num { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--cc-iris); }
+.cc-phase h3 { font-size: 1.05rem; margin: 0.3rem 0 0.5rem; line-height: 1.1; }
+.cc-phase p { font-size: 0.84rem; line-height: 1.34; margin: 0; color: #3a444d; }
+.cc-phase.p1 { border-top: 5px solid var(--cc-green); }
+.cc-phase.p2 { border-top: 5px solid var(--cc-blue); }
+.cc-phase.p3 { border-top: 5px solid var(--cc-mint); }
+
+/* Erfolgsfaktor-Karten (5 Ebenen) */
+.cc-factor { border-radius: 12px; padding: 0.85rem 0.9rem; background: var(--cc-grey-bg);
+  display: flex; flex-direction: column; gap: 0.35rem; }
+.cc-factor .ic { font-size: 1.5rem; line-height: 1; }
+.cc-factor h4 { font-size: 0.92rem; font-weight: 700; margin: 0; line-height: 1.1; }
+.cc-factor p { font-size: 0.74rem; line-height: 1.28; margin: 0; color: #3a444d; }
+.cc-factor.f1 { background: var(--cc-green-100); }
+.cc-factor.f2 { background: var(--cc-blue-100); }
+.cc-factor.f3 { background: var(--cc-yellow-100); }
+.cc-factor.f4 { background: var(--cc-red-100); }
+.cc-factor.f5 { background: var(--cc-iris-100); }
+
+/* Vertikale Schritt-Liste (Fahrplan) */
+.cc-steps { display: flex; flex-direction: column; gap: 0.55rem; }
+.cc-steps .row { display: grid; grid-template-columns: 2.1rem 1fr; gap: 0.8rem; align-items: start; }
+.cc-steps .row .dot { width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--cc-green);
+  color: #000; font-weight: 900; display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem; }
+.cc-steps .row:nth-child(2) .dot { background: var(--cc-blue); }
+.cc-steps .row:nth-child(3) .dot { background: var(--cc-mint); }
+.cc-steps .row:nth-child(4) .dot { background: var(--cc-yellow); }
+.cc-steps .row .body h4 { font-size: 0.98rem; margin: 0.15rem 0 0.1rem; }
+.cc-steps .row .body p { font-size: 0.82rem; margin: 0; color: #3a444d; line-height: 1.3; }
+
+/* KPI-/Pricing-Tabelle schlicht */
+.cc-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.cc-table th { text-align: left; font-weight: 700; padding: 0.5rem 0.7rem; border-bottom: 2px solid #000; }
+.cc-table td { padding: 0.5rem 0.7rem; border-bottom: 1px solid #d8dcde; }
+.cc-table tr:last-child td { border-bottom: 0; }
+.cc-table .total td { font-weight: 700; border-top: 2px solid #000; border-bottom: 0; }
+
+/* Pitch-Karte mit Icon + Titel + Text */
+.cc-tile { border-radius: 12px; padding: 0.9rem 1rem; background: #fff; border: 1.5px solid rgba(0,0,0,0.1); }
+.cc-tile h4 { font-size: 0.98rem; margin: 0 0 0.3rem; }
+.cc-tile p { font-size: 0.82rem; margin: 0; color: #3a444d; line-height: 1.32; }
+
+/* dezent kleinere Foot-Note */
+.cc-note { font-size: 0.78rem; color: #5c6469; }
+
+/* Eyebrow-Modulnummer */
+.cc-eyebrow {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cc-black);
+  margin-bottom: 0.4rem;
+}
+
+/* Kompakte Unterpunkt-Liste in Modul-Karten */
+.cc-card.mod { padding: 0.7rem 0.85rem; }
+.cc-card.mod h3 {
+  font-size: 0.9rem;
+  line-height: 1.15;
+  min-height: 2.3em;
+  margin-bottom: 0.3rem;
+}
+.cc-sublist { margin: 0; padding: 0; list-style: none; }
+.cc-sublist > li {
+  position: relative;
+  padding-left: 0.75rem;
+  font-size: 0.73rem;
+  line-height: 1.28;
+  margin-bottom: 0.16rem;
+}
+.cc-sublist > li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.4rem;
+  width: 0.3rem; height: 0.3rem; border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+}
+
+/* Teal Header-Bar (z. B. „Tag 1 / Tag 2") */
+.cc-bar {
+  background: var(--cc-iris);
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-weight: 700;
+  font-size: 1.02rem;
+  display: inline-block;
+}
+.cc-bar .lead { font-weight: 900; }
+
+/* Unterstrichene Akzent-Headline (grüner Marker unter dem Titel) */
+.cc-underline {
+  display: inline-block;
+  position: relative;
+  font-weight: 900;
+}
+.cc-underline::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -4px;
+  height: 8px; background: var(--cc-green); z-index: -1;
+  border-radius: 2px;
+}
+
+/* 3-Schritt-Timeline */
+.cc-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; align-items: stretch; }
+.cc-timeline .step {
+  position: relative; padding: 0 1rem;
+  border-top: 4px solid var(--cc-green);
+  padding-top: 0.9rem;
+}
+.cc-timeline .step .wk { font-size: 0.78rem; font-weight: 700; color: var(--cc-iris); }
+.cc-timeline .step h3 { margin: 0.2rem 0 0.4rem; }
+.cc-timeline .step p { font-size: 0.85rem; margin: 0; }
+.cc-timeline .step:nth-child(2) { border-color: var(--cc-blue); }
+.cc-timeline .step:nth-child(2) .wk { color: var(--cc-blue); }
+.cc-timeline .step:nth-child(3) { border-color: var(--cc-mint); }
+.cc-timeline .step:nth-child(3) .wk { color: #178a7e; }
+
+/* Zitat-Block */
+.cc-quote { font-style: italic; line-height: 1.4; }
+.cc-quote .src { font-style: normal; font-weight: 700; margin-top: 0.6rem; }
+
+/* Voller grüner Cover-Hintergrund */
+.cc-fill-green { position: absolute; inset: 0; background: var(--cc-green); }
+.cc-fill-pad { padding: 0 4.2rem; }
+
+/* Lead-/Personen-Karte (z. B. zwei Leads nebeneinander) */
+.lead-card { border-radius: 16px; padding: 1.8rem 1.7rem; display: flex; flex-direction: column; }
+.lead-card.green { background: var(--cc-green); }
+.lead-card.blue  { background: var(--cc-blue); }
+.lead-card .who { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+.lead-card .role { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.5rem; opacity: 0.75; }
+.lead-card h3 { font-size: 1.5rem; margin: 1.1rem 0 0; line-height: 1.1; }
+.lead-card .cp { font-size: 1.0rem; font-weight: 500; margin-top: 0.5rem; }
+
+/* „Querschnitt"-Hinweis-Band (farbige Zeile mit Label) */
+.cc-cross { display: flex; align-items: center; gap: 0.9rem; background: var(--cc-iris); color: #fff;
+  border-radius: 12px 12px 12px 4px; padding: 0.85rem 1.2rem; }
+.cc-cross .lab { font-size: 0.74rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.cc-cross .txt { font-size: 1.0rem; line-height: 1.3; }
+.cc-cross strong { color: #fff; }
+
+/* Frage-/Offene-Punkte-Box (nummeriert) */
+.qbox { display: flex; align-items: center; gap: 1.3rem; background: var(--cc-grey-bg);
+  border-left: 6px solid var(--cc-green); border-radius: 10px; padding: 1.1rem 1.5rem; }
+.qbox .qn { font-size: 1.8rem; font-weight: 900; color: var(--cc-iris); line-height: 1; min-width: 2ch; }
+.qbox p { font-size: 1.2rem; line-height: 1.35; margin: 0; }
+
+/* Operatives-Modell-Kachel */
+.om-tile { border-radius: 14px; padding: 1.3rem 1.4rem; background: var(--cc-grey-bg); }
+.om-tile.measure { background: var(--cc-green-100); }
+.om-tile h4 { font-size: 1.15rem; margin: 0; }
+.om-note { font-size: 1.05rem; line-height: 1.4; color: #3a444d; max-width: 80ch; }
+
+/* Abschluss-Karte (Cover-Variante „Wir glauben an das Thema") */
+.cc-close { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center; }
+.cc-close-card { background: var(--cc-green); border-radius: 20px 20px 4px 20px; padding: 1.7rem 1.8rem; }
+
+/* Testimonial-Wand (Masonry aus Sprechblasen) */
+.cc-testi-wall { column-count: 3; column-gap: 0.85rem; margin-top: 1rem; }
+.cc-testi {
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.85rem;
+  padding: 0.85rem 1rem 0.9rem;
+  border-radius: 16px 16px 16px 4px;
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.08);
+}
+.cc-testi.t-green { background: var(--cc-green-100); }
+.cc-testi.t-blue  { background: var(--cc-blue-100); }
+.cc-testi.t-mint  { background: #e2f7f4; }
+.cc-testi p { font-style: italic; font-size: 0.76rem; line-height: 1.32; margin: 0; }
+.cc-testi .who { display: block; font-style: normal; font-weight: 700; font-size: 0.72rem; margin-top: 0.55rem; }
+.cc-testi .who::before { content: "— "; color: var(--cc-iris); }

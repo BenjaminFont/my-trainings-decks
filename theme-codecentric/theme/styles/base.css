@@ -1,0 +1,83 @@
+/* ===================================================================
+   codecentric — GETEILTER BRAND-KERN (beide Varianten).
+   Hier lebt NUR, was Training UND Pitch gemeinsam haben:
+   Marken-Farb-Tokens, die Rubik-Schrift, der weiße Hintergrund,
+   die Logo-Position und ein paar Slidev-UI-Angleichungen.
+
+   Variantenspezifisches gehört NICHT hierher:
+   - Trainings-Folien-Bausteine  -> styles/training.css  (alles unter .cc)
+   - Pitch-Folien-Bausteine      -> styles/pitch.css     (alles unter .pitch / .cc-*)
+
+   WICHTIG: Das Theme-public/ wird von Slidev unter /theme/ ausgeliefert.
+   Fonts und Logos daher als /theme/fonts/… bzw. /theme/img/… referenzieren —
+   NICHT /fonts/…. Deck-eigene Inhaltsbilder liegen unter /img/… (Deck-public).
+   =================================================================== */
+
+:root {
+  /* ---- Offizielle codecentric-Markenpalette (Primär/Sekundär) ---- */
+  --cc-black:  #000000;
+  --cc-white:  #FFFFFF;
+  --cc-green:  #22F4AE;   /* centric green – Primär, Akzent (// und Linie) */
+  --cc-blue:   #00C9EC;   /* code blue – Sekundär */
+  --cc-mint:   #47D9CB;   /* centric mint */
+  --cc-yellow: #F7EA2D;   /* yellow */
+  --cc-red:    #FF5A5F;   /* red */
+  --cc-iris:   #007286;   /* iris blue – dunkler Text-Akzent */
+  --cc-grey:   #6b7280;
+  --cc-light:  #f4f4f5;
+
+  /* ---- Pastell-Töne für Dot-Bullets (Training) ---- */
+  --dot-yellow: #fbf6ab;
+  --dot-blue:   #99e9f7;
+  --dot-green:  #a6fade;
+  --dot-pink:   #ff9c9f;
+
+  /* ---- Tints für Karten / Diagramme (Pitch, erweiterte Palette) ---- */
+  --cc-green-100:  #d2fcee;
+  --cc-blue-100:   #ccf4fb;
+  --cc-yellow-100: #fdfad5;
+  --cc-red-100:    #ffdedf;
+  --cc-iris-100:   #cce2e6;
+  --cc-ink-700:    #1e2a32;  /* Code-Blöcke / dunkle Flächen */
+  --cc-ink-900:    #131b21;
+  --cc-grey-bg:    #f1f2f2;  /* leichte Sektions-Hintergründe */
+  --cc-grey-card:  #eef0f0;
+}
+
+/* ---- Schrift: Rubik (codecentric Markenschrift), lokal aus /theme/fonts ---- */
+@font-face { font-family:'Rubik'; font-weight:300; font-style:normal;
+  src:url('/theme/fonts/Rubik-Light.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:400; font-style:normal;
+  src:url('/theme/fonts/Rubik-Regular.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:500; font-style:normal;
+  src:url('/theme/fonts/Rubik-Medium.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:700; font-style:normal;
+  src:url('/theme/fonts/Rubik-Bold.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:900; font-style:normal;
+  src:url('/theme/fonts/Rubik-Black.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:300; font-style:italic;
+  src:url('/theme/fonts/Rubik-LightItalic.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:400; font-style:italic;
+  src:url('/theme/fonts/Rubik-Italic.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:500; font-style:italic;
+  src:url('/theme/fonts/Rubik-MediumItalic.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:700; font-style:italic;
+  src:url('/theme/fonts/Rubik-BoldItalic.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Rubik'; font-weight:900; font-style:italic;
+  src:url('/theme/fonts/Rubik-BlackItalic.ttf') format('truetype'); font-display:swap; }
+
+/* Hintergrund des gesamten Decks weiß */
+.slidev-layout,
+#slide-content,
+.slidev-page { background: var(--cc-white); }
+
+/* Slidev-Standard-Controls/Progress an die Marke angleichen */
+.slidev-controls { color: var(--cc-green); }
+
+/* Dev-Modus: Das "Go to"-Panel (Goto.vue) parkt geschlossen oberhalb des
+   Viewports, seine Vorschlagsliste ragt aber wieder ins Bild. Im
+   geschlossenen Zustand ausblenden — die g-Sprungfunktion bleibt. */
+.fixed.right-5.-top-20 .autocomplete-list,
+#slidev-goto-dialog:not(.top-5) .autocomplete-list {
+  display: none !important;
+}

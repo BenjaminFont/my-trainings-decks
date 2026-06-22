@@ -1,0 +1,12 @@
+# Slidev build/dev
+node_modules/
+dist/
+.slidev/
+*-export.pdf
+*.local
+
+# OS / Editor
+.DS_Store
+*.log
+.vscode/
+.idea/

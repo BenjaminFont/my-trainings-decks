@@ -1,0 +1,21 @@
+{
+  "name": "context-engineering-slidev",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export",
+    "dev:no-teams": "slidev slides-no-teams.md --open",
+    "build:no-teams": "slidev build slides-no-teams.md -o dist-no-teams",
+    "export:no-teams": "slidev export slides-no-teams.md --output slides-no-teams-export.pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.50.0",
+    "@slidev/theme-default": "^0.25.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.60.0"
+  }
+}
