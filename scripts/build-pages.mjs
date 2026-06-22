@@ -1,7 +1,7 @@
 // Build all Slidev decks into dist/<slug> with the correct GitHub Pages base
 // path, then emit a dist/index.html landing page linking every deck.
 //
-// Usage:  node scripts/build-pages.mjs            (base = /my-trainings-decks/)
+// Usage:  node scripts/build-pages.mjs            (base = /my-trainings/)
 //         BASE_PATH=/ node scripts/build-pages.mjs  (local root build)
 //
 // Each deck is an independent Slidev project (own package.json + node_modules).
@@ -18,7 +18,10 @@ const ROOT = resolve(__dirname, '..')
 const DIST = resolve(ROOT, 'dist')
 
 // Repo name → Pages serves at https://<user>.github.io/<REPO>/
-const REPO = 'my-trainings-decks'
+// In CI, derive from GITHUB_REPOSITORY ("owner/repo") so the same script works
+// in whichever repo it runs (this one builds nothing public; the synced copy in
+// my-trainings-decks does the actual Pages deploy).
+const REPO = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'my-trainings-decks'
 // Allow overriding for local root builds (BASE_PATH=/).
 const BASE_ROOT = process.env.BASE_PATH ?? `/${REPO}/`
 
