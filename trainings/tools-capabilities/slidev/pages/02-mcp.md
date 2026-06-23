@@ -129,11 +129,11 @@ layout: cc
 ---
 
 <span class="secno">02</span>
-<h2 class="slash">MCP-Empfehlungen für Cosinex</h2>
+<h2 class="slash">MCP-Empfehlungen für den Kunden</h2>
 
-<div class="cosinex-table">
+<div class="kunden-table">
 
-| Tier | MCP-Server | Nutzen für Cosinex | Track |
+| Tier | MCP-Server | Nutzen für den Kunden | Track |
 |---|---|---|---|
 | 1 | **Atlassian Rovo** ⭐ | Jira & Confluence — an echten Tickets arbeiten, User Stories & Release Notes | Alle |
 | 1 | **Context7** ⭐ | Versions-aktuelle Doku für Java-21- & Hibernate-Migration | Dev |
@@ -147,9 +147,9 @@ layout: cc
 <p class="src">Minimal-Set zum Start: <strong>Atlassian Rovo</strong> · offizielle Server laufen über OAuth &amp; respektieren bestehende Berechtigungen</p>
 
 <!--
-Folie für Cosinex (AI Enablement Sprint, Kickoff 15./16.06., Review 03.07.2026).
-Quelle: kunden/cosinex/mcp-empfehlungen.md.
-Ziel: Konkrete MCP-Server an den Cosinex-Stack andocken — von der generischen MCP-Theorie zum „was richten WIR ein".
+Folie für den Kunden (AI Enablement Sprint, Kickoff 15./16.06., Review 03.07.2026).
+Quelle: kunden/mcp-empfehlungen.md.
+Ziel: Konkrete MCP-Server an den Kunden-Stack andocken — von der generischen MCP-Theorie zum „was richten WIR ein".
 Was du sagen kannst:
 • Tier 1 ist der höchste Hebel und liegt direkt am Stack: Rovo (Jira/Confluence — alle arbeiten in „Gira"), Context7 (gegen veraltetes Modellwissen bei der Java-21-Migration) und Playwright (QA nutzt es schon).
 • Tier 2 ist rollenspezifisch: DB-MCP (welches DB-System? noch offen), Chrome DevTools (JSF-Frontends), Versionskontrolle (GitLab/Bitbucket/GitHub — je nach eingesetztem System, für MRs/PRs, Issues und CI/CD-Pipelines).
