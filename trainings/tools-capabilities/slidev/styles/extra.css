@@ -130,11 +130,11 @@
 /* Untertitel/Überschrift mittig über einem Code-Beispiel */
 .cc .code-cap { text-align: center; font-weight: 700; font-size: 1.05em; margin: 0.2em 0 0.6em; }
 
-/* ---------- Kunde MCP-Empfehlungstabelle ---------- */
-.cc .Kunde-table table { font-size: 0.58em; margin-top: 0.5em; }
-.cc .Kunde-table th, .cc .Kunde-table td { padding-top: 0.5em; padding-bottom: 0.5em; }
-.cc .Kunde-table td:first-child { text-align: center; font-weight: 700; color: var(--cc-grey); }
-.cc .Kunde-table td:nth-child(2) { white-space: normal; }
+/* ---------- Kunden MCP-Empfehlungstabelle ---------- */
+.cc .kunden-table table { font-size: 0.58em; margin-top: 0.5em; }
+.cc .kunden-table th, .cc .kunden-table td { padding-top: 0.5em; padding-bottom: 0.5em; }
+.cc .kunden-table td:first-child { text-align: center; font-weight: 700; color: var(--cc-grey); }
+.cc .kunden-table td:nth-child(2) { white-space: normal; }
 .cc .src { margin-top: 0.8em; font-size: 0.64em; color: var(--cc-grey); }
 .cc .src strong { color: #111; }
 
