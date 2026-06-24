@@ -1,0 +1,104 @@
+/* ===================================================================
+   Ralph Wiggum Loop — DECK-SPEZIFISCHE Ergänzungen.
+
+   Brand-Basis (Farben, Rubik, .cc-Layouts, .secno, h2.slash,
+   footer-logo, Tabellen, Code, dots) kommt aus dem geteilten Theme
+   `theme-codecentric` (styles/base.css + training.css). Hier nur, was
+   ausschließlich dieses Deck braucht:
+     - Pastell-„soft"-Töne
+     - linksbündige Statement-Folie (.stmt)
+     - die Loop-/Pipeline-Diagramm-Primitive
+   =================================================================== */
+
+:root {
+  --cc-green-soft:  #99f9d6;
+  --cc-blue-soft:   #7fe3f5;
+  --cc-yellow-soft: #fbf496;
+  --cc-red-soft:    #ffb3c2;
+  --cc-gray-soft:   #ececec;
+  --cc-line:        #111111;
+}
+
+/* Inhaltsfolien etwas höher ansetzen (wie harness-Deck). */
+.slidev-layout.cc:not(.center-text):not(.title-slide):not(.photo-head):not(.stmt) {
+  padding-top: 7.5%;
+}
+
+/* ===========================================================
+   Statement-Folie — große, LINKSBÜNDIGE Aussage, vertikal mittig.
+   =========================================================== */
+.slidev-layout.cc.stmt {
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding: 6% 7%;
+}
+.cc.stmt .stmt-text { font-weight: 700; letter-spacing: -0.02em; line-height: 1.14; }
+.cc.stmt .stmt-text p { margin: 0; font-weight: 700; }
+.cc.stmt .stmt-text .it    { font-weight: 400; font-style: italic; }
+.cc.stmt .stmt-text .accent { color: var(--cc-green); }
+.cc.stmt .stmt-text .grey  { color: var(--cc-grey); font-weight: 400; }
+
+/* ===========================================================
+   Loop-Pipeline (Folie „Vier Stationen pro Iteration")
+   Vertikale Kette aus vier Stationen mit Modell-Tag rechts.
+   =========================================================== */
+.ralph-pipe { display: flex; flex-direction: column; gap: 0.45em; width: 100%; max-width: 52rem; }
+.ralph-pipe .station {
+  display: grid;
+  grid-template-columns: 2.1em 1fr auto;
+  align-items: center;
+  gap: 0.9em;
+  border: 2.5px solid var(--cc-line);
+  border-radius: 14px;
+  padding: 0.6em 0.9em;
+  background: #fff;
+}
+.ralph-pipe .station.s4 { background: var(--cc-gray-soft); border-style: dashed; }
+.ralph-pipe .st-no {
+  width: 2.1em; height: 2.1em;
+  background: var(--cc-green); color: #000;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.95em;
+}
+.ralph-pipe .st-body { line-height: 1.2; }
+.ralph-pipe .st-cmd { font-weight: 700; font-size: 0.95em; }
+.ralph-pipe .st-cmd code {
+  font-family: 'Fira Code', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 0.92em;
+  /* explizit hell — sonst gewinnt in manchen Browsern die dunkle .cc pre code
+     / shiki-Kaskade und legt einen schwarzen Kasten über den Befehl. */
+  background: var(--cc-light, #f4f4f5) !important;
+  color: var(--cc-black, #000) !important;
+  padding: 0.05em 0.4em;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.ralph-pipe .st-desc { color: var(--cc-grey); font-weight: 400; font-size: 0.72em; }
+.ralph-pipe .st-model {
+  font-weight: 700; font-size: 0.72em;
+  padding: 0.25em 0.8em; border-radius: 999px; white-space: nowrap;
+}
+.ralph-pipe .m-opus  { background: var(--cc-blue-soft); }
+.ralph-pipe .m-sonnet{ background: var(--cc-green-soft); }
+.ralph-pipe .m-bash  { background: #ddd; color: #333; }
+.ralph-pipe .pipe-arrow { text-align: center; color: var(--cc-green); font-weight: 800; line-height: 0.4; font-size: 0.9em; }
+
+/* Klammer „LLM (schlau) / Bash (dumm)" rechts neben der Pipeline */
+.pipe-wrap { display: flex; gap: 1.2em; align-items: stretch; width: 100%; }
+
+/* ===========================================================
+   Übertragbares Muster (letzte Folie) — generisches Loop-Schema
+   =========================================================== */
+.pattern { display: flex; flex-direction: column; align-items: center; gap: 0.4em; width: 100%; }
+.pattern .pbox {
+  border: 2.5px solid var(--cc-line); border-radius: 14px;
+  padding: 0.55em 1.1em; font-weight: 700; text-align: center; background: #fff;
+  font-size: 0.9em;
+}
+.pattern .pbox .sub { display: block; color: var(--cc-grey); font-weight: 400; font-size: 0.72em; }
+.pattern .pbox.loop { background: var(--cc-green-soft); }
+.pattern .pbox.llm  { background: var(--cc-blue-soft); }
+.pattern .pbox.det  { background: var(--cc-gray-soft); }
+.pattern .parrow { color: var(--cc-green); font-weight: 800; font-size: 1.1em; line-height: 0.6; }
