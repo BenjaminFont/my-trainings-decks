@@ -39,6 +39,7 @@ const DECKS = [
   { slug: 'tools-developing',           title: 'Tools for Developing',                                  group: 'Trainings', dir: 'trainings/tools-developing/slidev' },
   { slug: 'talk-harness-engineering',     title: 'Harness Engineering (Talk)',     group: 'Talks', dir: 'talks/harness-engineering/slidev' },
   { slug: 'talk-harness-engineering-v2',  title: 'Harness Engineering (Talk, v2)', group: 'Talks', dir: 'talks/harness-engineering/v2/slidev' },
+  { slug: 'talk-ralph-loop',              title: 'Der Ralph Wiggum Loop',          group: 'Talks', dir: 'talks/ralph-loop/slidev' },
 ]
 
 function run(cmd, cwd) {
@@ -60,34 +61,46 @@ function build(deck) {
   const out = resolve(DIST, deck.slug)
   console.log(`\n=== build: ${deck.slug}  (base ${base}) ===`)
   run(`npx slidev build --base ${base} --out ${out}`, dir)
-  fixThemePaths(deck, base)
+  fixAssetPaths(deck, base)
 }
 
 // The shared theme references its public assets with an absolute /theme/...
 // path (e.g. @font-face url(/theme/fonts/Rubik-Bold.ttf)). Slidev copies the
 // theme's public/ into <out>/theme/ but does NOT rewrite that absolute URL for
-// the --base sub-path, so on GitHub Pages the fonts 404. Rewrite /theme/ to the
-// base-prefixed path in the emitted CSS/JS.
-function fixThemePaths(deck, base) {
-  const assetsDir = resolve(DIST, deck.slug, 'assets')
-  if (!existsSync(assetsDir)) return
-  const prefix = `${base}theme/`
+// the --base sub-path, so on GitHub Pages the fonts 404.
+//
+// The same problem hits deck-local images referenced with an absolute path
+// (e.g. <img src="/img/road.png"> or `image: /img/cover.jpg` in frontmatter):
+// Slidev copies public/img/ into <out>/img/ but leaves the absolute /img/ URL
+// untouched, so it resolves against the Pages domain root and 404s. Relative
+// `img/...` refs get rewritten by Slidev; absolute `/img/...` ones do not.
+//
+// Rewrite both /theme/ and /img/ to the base-prefixed path in the emitted
+// CSS/JS/HTML.
+function fixAssetPaths(deck, base) {
+  const slugDir = resolve(DIST, deck.slug)
+  if (!existsSync(slugDir)) return
+  // /theme/(fonts|img)/ and /img/ -> <base>...   (guard the leading boundary so
+  // we never touch an already-prefixed path like /my-trainings-decks/slug/img/).
+  const rules = [
+    [/(^|["'(=\s])\/theme\/(fonts|img)\//g, `$1${base}theme/$2/`],
+    [/(^|["'(=\s])\/img\//g, `$1${base}img/`],
+  ]
   let patched = 0
   const walk = (d) => {
     for (const entry of readdirSync(d, { withFileTypes: true })) {
       const p = resolve(d, entry.name)
       if (entry.isDirectory()) walk(p)
-      else if (/\.(css|js)$/.test(entry.name)) {
+      else if (/\.(css|js|html)$/.test(entry.name)) {
         const src = readFileSync(p, 'utf8')
-        // Rewrite only bare-absolute theme asset paths (fonts/img). Use a
-        // regex with a negative lookbehind-ish guard: match (^|["'(]) /theme/.
-        const out = src.replace(/(^|["'(=\s])\/theme\/(fonts|img)\//g, `$1${prefix}$2/`)
+        let out = src
+        for (const [re, rep] of rules) out = out.replace(re, rep)
         if (out !== src) { writeFileSync(p, out); patched++ }
       }
     }
   }
-  walk(assetsDir)
-  if (patched) console.log(`   patched ${patched} file(s): /theme/ -> ${prefix}`)
+  walk(slugDir)
+  if (patched) console.log(`   patched ${patched} file(s): /theme/ + /img/ -> ${base}`)
 }
 
 function landingPage() {
