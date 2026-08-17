@@ -37,6 +37,7 @@ const DECKS = [
   { slug: 'spec-driven-development-v3', title: 'Spec Driven Development — OpenSpec & Example Mapping',  group: 'Trainings', dir: 'trainings/spec-driven-development/slidev-v3' },
   { slug: 'tools-capabilities',         title: 'Tools & Skills',                                        group: 'Trainings', dir: 'trainings/tools-capabilities/slidev' },
   { slug: 'tools-developing',           title: 'Tools for Developing',                                  group: 'Trainings', dir: 'trainings/tools-developing/slidev' },
+  { slug: 'ai-sprint-review',           title: 'Review Day – AI Sprint',                                group: 'Trainings', dir: 'trainings/ai-sprint-review/slidev' },
   { slug: 'talk-harness-engineering',     title: 'Harness Engineering (Talk)',     group: 'Talks', dir: 'talks/harness-engineering/slidev' },
   { slug: 'talk-harness-engineering-v2',  title: 'Harness Engineering (Talk, v2)', group: 'Talks', dir: 'talks/harness-engineering/v2/slidev' },
   { slug: 'talk-ralph-loop',              title: 'Der Ralph Wiggum Loop',          group: 'Talks', dir: 'talks/ralph-loop/slidev' },
